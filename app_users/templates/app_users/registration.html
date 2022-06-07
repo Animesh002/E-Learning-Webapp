@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Register{% endblock %}
+
+{% block image_block %}
+<header class="info-header">
+  <div id="page-intro" class="container-fluid d-flex align-items-center justify-content-center ">
+    <div class="row d-flex justify-content-center text-center">
+      <div class="col-md-10 text-white">
+        <!-- heading -->
+        <h2 class="display-4 font-weight-bold  p-5 " style="color:#A238BD;" > Registration </h2>
+          <!-- divider -->
+        <hr style="color:#A238BD;">
+        <!-- description -->
+        <h3 class="white-text my-4"  style="color:#A238BD;"><i>Journey of a thousand miles begins with a single step and this is that step. Fill out this registration form and get started with learning</i></h3>
+  </div>
+</header>
+{% endblock %}
+
+
+{% block content %}
+
+<section class="text-center mt-4">
+              <h2 class="mb-5 font-weight-bold" style="color:#A238BD;">Registration</h2>
+</section>
+
+  {% if registered %}
+    <h1>Thank you for registering</h1>
+  {% else %}
+      <h3>Fill the form: </h3>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ user_form|crispy }}
+        {{ profile_form|crispy }}
+        <div class="row justify-content-center">
+        <div class="col-md-6">
+        <input type="submit" value="Register" class="btn btn-primary btn-block">
+        </div>
+        </div>
+      </form>
+  {% endif %}
+{%endblock%}
